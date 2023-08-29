@@ -1,4 +1,4 @@
-import SHA256 from 'crypto-js/sha256';
+const SHA256 = require('crypto-js/sha256');
 
 class Block {
     constructor(index, timestamp, data, previousHash = '') {
@@ -20,7 +20,7 @@ class BlockChain {
     }
 
     createGenesisBlock() {
-        new Block(0, "01/01/2023", "Genesis block", "0");
+        return new Block(0, "01/01/2023", "Genesis block", "0");
     }
 
     getLatestBlock() {
@@ -47,6 +47,12 @@ class BlockChain {
 let neguCoin = new BlockChain();
 neguCoin.addBlock(new Block(1, "02/01/2023", { amount: 4 }));
 neguCoin.addBlock(new Block(1, "03/01/2023", { amount: 10 }));
+
+console.log("Is BlockChain Valid? " + neguCoin.isChainValid());
+
+neguCoin.chain[1].data = { amount: 100 };
+neguCoin.chain[1].hash = neguCoin.chain[1].calculateHash();
+console.log("Is BlockChain Valid? " + neguCoin.isChainValid());
 
 console.log(JSON.stringify(neguCoin, null, 4));
 
