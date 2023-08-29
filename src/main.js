@@ -45,12 +45,13 @@ class BlockChain {
 }
 
 let neguCoin = new BlockChain();
+
 neguCoin.addBlock(new Block(1, "02/01/2023", { amount: 4 }));
 neguCoin.addBlock(new Block(1, "03/01/2023", { amount: 10 }));
 
 console.log("Is BlockChain Valid? " + neguCoin.isChainValid());
 
-neguCoin.chain[1].data = { amount: 100 };
+// neguCoin.chain[1].data = { amount: 100 };
 neguCoin.chain[1].hash = neguCoin.chain[1].calculateHash();
 console.log("Is BlockChain Valid? " + neguCoin.isChainValid());
 
